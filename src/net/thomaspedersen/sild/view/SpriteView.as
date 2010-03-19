@@ -1,12 +1,16 @@
 package net.thomaspedersen.sild.view
 {
-	import net.thomaspedersen.sild.interfaces.IManageable;
+	import flash.display.Sprite;
 	
-	public class View implements IView
+	import net.thomaspedersen.sild.game.Game;
+	import net.thomaspedersen.sild.interfaces.IView;
+	
+	public class SpriteView extends Sprite implements IView
 	{
 		private var _id:uint;
-		public function View()
+		public function SpriteView()
 		{
+			super();
 			_id = Game.instance.generateId();
 		}
 		
@@ -32,7 +36,10 @@ package net.thomaspedersen.sild.view
 		
 		public function destroy():void
 		{
+			if (parent != null)
+				parent.removeChild(this);
 			delete this;
 		}
+		
 	}
 }
